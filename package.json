@@ -1,0 +1,33 @@
+{
+  "name": "live-edtech-trivia-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "lint": "npx eslint ./realtime-quiz/**/*.vue ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Srushtika/live-edtech-trivia-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Srushtika/live-edtech-trivia-app/issues"
+  },
+  "homepage": "https://github.com/Srushtika/live-edtech-trivia-app#readme",
+  "dependencies": {
+    "ably": "^1.2.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "serve-static": "^1.14.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.11.0",
+    "eslint-plugin-vue": "^7.0.1"
+  }
+}
