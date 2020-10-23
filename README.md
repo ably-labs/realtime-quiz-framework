@@ -18,6 +18,12 @@ The real-time messaging is powered by [Ably’s real-time infrastructure](https:
 
 This framework is built on top of the [multiplayer games networking framework](https://github.com/Srushtika/multiplayer-games-scalable-networking-framework) that allows continuous streaming of data between various players and the game server. This framework is a bit different in that it allows for a more on-demand progression of the app by giving adequate controls of the app flow to the host.
 
+You can check out a [blog article](https://www.ably.io/blog/a-scalable-realtime-quiz-framework-to-build-edtech-apps/) I wrote, to learn more about the uses of this framework.
+
+#### Check out the [functional demo](https://quiz.ably.dev/) for this realtime quiz framework.
+
+---
+
 ### The tech stack
 
 ##### Frameworks/ Languages
@@ -192,6 +198,8 @@ realtime-quiz
 14. `player/Playerhome.vue`
 
     This component is visible to the player. This is the first page they see when they follow a link shared by their host. It allows them to add their nickname and enter the quiz room created by their host. They’ll be waiting along with other players until the host decides to start the quiz.
+
+If you want to learn more about the source code, you should check out the [TUTORIAL.md](https://github.com/Srushtika/realtime-quiz-framework/blob/main/TUTORIAL.md) for a more thorough breakdown.
 
 ## Core concepts
 

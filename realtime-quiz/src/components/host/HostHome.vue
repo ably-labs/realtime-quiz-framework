@@ -31,7 +31,9 @@
         </button>
       </div>
       <div class="card-footer text-muted">
-        <a href="https://www.ably.io" target="_blank"
+        <a
+          href="https://github.com/Srushtika/realtime-quiz-framework"
+          target="_blank"
           >Learn how to build your own realtime quiz app with Ably &rarr;</a
         >
       </div>
