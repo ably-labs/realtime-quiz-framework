@@ -144,8 +144,11 @@
       <div class="alert alert-secondary end-msg" role="alert">
         <h6>The quiz has ended</h6>
         <h1 class="display-4">Congratulations to the winners 🎉🎉🎉</h1>
+        <Leaderboard
+          :leaderboard="leaderboard"
+          :finalScreen="true"
+        ></Leaderboard>
       </div>
-      <Leaderboard :leaderboard="leaderboard" :finalScreen="true"></Leaderboard>
     </div>
   </div>
 </template>
@@ -159,7 +162,7 @@ import Leaderboard from './Leaderboard.vue';
 import * as GSheetReader from 'g-sheets-api';
 export default {
   name: 'QuizType',
-  props: ['resetCmpFn', 'realtime', 'quizType', 'showHome'],
+  props: ['resetCmpFn', 'realtime', 'quizType', 'showHome', 'stopTheSnow'],
   components: {
     Question,
     AdminPanel,
@@ -304,6 +307,7 @@ export default {
       this.myQuizRoomCh.subscribe('start-quiz-timer', msg => {
         this.didHostStartGame = true;
         this.timer = msg.data.countDownSec;
+        this.stopTheSnow();
       });
       this.myQuizRoomCh.subscribe('new-question', msg => {
         this.handleNewQuestionReceived(msg);
