@@ -28,7 +28,7 @@ module.exports = [
   {
     questionNumber: 4,
     question:
-      'Which company popularized the concept of Santa Claus',
+      'Which company popularized the concept of Santa Claus?',
     choices: ['Pepsi', "Fanta", 'Fritz kola', 'Coca cola'],
     showImg: true,
     correct: 3,
