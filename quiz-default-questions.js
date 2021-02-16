@@ -2,73 +2,73 @@ module.exports = [
   {
     questionNumber: 1,
     question:
-      'By default, most web browsers use which colour to denote a hyperlink?',
-    choices: ['Blue', 'Green', 'Maroon', 'Red'],
+      'Which actor played Ebenezer Scrooge in Disney\'s - A Christmas Carol?',
+    choices: ['Will Smith', 'Jim Carrey', 'James Corden', 'Johnny Depp'],
     showImg: true,
-    correct: 0,
+    correct: 1,
     pic:
-      'http://www.martinimanna.com/wp-content/uploads/2016/09/New-Mobile-Hyperlink-Allows-Apps-To-Interact-Like-Webpages.jpg'
+      'https://user-images.githubusercontent.com/5900152/101055558-ed1baf80-3581-11eb-9e71-f8f34964d240.jpg'
   },
   {
     questionNumber: 2,
-    question: 'Which of the following shooter series is published by EA?',
-    choices: ['Call Of Duty', 'Fortnite', 'Halo', 'Battlefield'],
+    question: 'Which country is the largest exporter of Christmas trees?',
+    choices: ['Sweden', 'Romania', 'Austria', 'Canada'],
     showImg: true,
     correct: 3,
-    pic: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1238840/header.jpg'
+    pic: 'https://user-images.githubusercontent.com/5900152/101082994-3f6dc800-35a4-11eb-9333-900a50026f7c.jpg'
   },
   {
     questionNumber: 3,
-    question: 'Which of these is largest in memory terms',
-    choices: ['Megabyte', 'Gigabyte', 'Terabyte', 'Kilobyte'],
+    question: 'What holiday movie sequel includes a cameo by Donald Trump?',
+    choices: ['Home Alone 2', 'The Holiday', 'Office Christmas Party', 'Daddy\'s Home 2'],
     showImg: true,
-    correct: 2,
-    pic: 'https://i.ytimg.com/vi/-aVhta7db2o/maxresdefault.jpg'
+    correct: 0,
+    pic: 'https://user-images.githubusercontent.com/5900152/101084250-97f19500-35a5-11eb-845e-f7308998fbaa.png'
   },
   {
     questionNumber: 4,
     question:
-      'What is a malicious program that is disguised as a legitimate software?',
-    choices: ['Nemean Lion', "Thor's Hammer", 'Trojan Horse', 'Golden Fleece'],
+      'Which company popularized the concept of Santa Claus?',
+    choices: ['Pepsi', "Fanta", 'Fritz kola', 'Coca cola'],
     showImg: true,
-    correct: 2,
+    correct: 3,
     pic:
-      'https://www.hs-academypages.com/hubfs/lp/academy/trojan.png?t=1533931401700'
+      'https://user-images.githubusercontent.com/5900152/101084690-3bdb4080-35a6-11eb-83e8-dcb76a12afa6.jpg'
   },
 
   {
     questionNumber: 5,
-    question: '"E" in Amazon\'s EC2 stands for?',
-    choices: ['Eclipse', 'Extra', 'Elastic', 'Economical'],
+    question: 'What popular Christmas song was actually written for Thanksgiving?',
+    choices: ['Frosty the snowman', 'Jingle bells', 'Sleigh ride', 'Feliz navidad'],
     showImg: true,
-    correct: 2,
+    correct: 1,
     pic:
-      'https://image.slidesharecdn.com/introductiontoamazonec2-150417052810-conversion-gate01/95/introduction-to-amazon-ec2-2-638.jpg?cb=1429250596'
+      'https://user-images.githubusercontent.com/5900152/101085047-c623a480-35a6-11eb-8ce2-43bc168fa2ca.jpg'
   },
   {
     questionNumber: 6,
-    question: 'What was the code name of Windows 95?',
-    choices: ['Cairo', 'Washington', 'Whistler', 'Chicago'],
+    question: 'In what year did Google start tracking Santa Claus?',
+    choices: ['2004', '2008', '2012', '2000'],
     showImg: true,
-    correct: 3,
-    pic: 'http://chicago.win95.googlepages.com/chic58s-1.gif'
+    correct: 0,
+    pic: 'https://user-images.githubusercontent.com/5900152/101085326-316d7680-35a7-11eb-8b42-d5c69770cdef.png'
   },
   {
     questionNumber: 7,
-    question: 'Which of these holds true for websockets',
-    choices: ['Bi-directional', 'Duplex', 'Persistent', 'All of the these'],
+    question: 'What did Harry Potter get for his first Christmas at Hogwarts?',
+    choices: ['A penknife', 'Invisibility cloak', 'A single tissue', 'Wand'],
     showImg: true,
-    correct: 3,
+    correct: 1,
     pic:
-      'https://assets.ably.io/assets/diagrams/realtime-intro-7dfe7b01a3c0e0e5a11b7580e8f026e9d88a681fad691ce9f46ba9f4be3bdaee.png'
+      'https://user-images.githubusercontent.com/5900152/101085655-a771dd80-35a7-11eb-960e-26f004f2f46b.jpg'
   },
   {
     questionNumber: 8,
-    question: "What is another term for 'bespoke' software?",
-    choices: ['Custom', 'Free', 'Expensive', 'Open Source'],
+    question: "In the FRIENDS episode 'The One With Phoebe's Dad', what do Chandler and Joey buy Phoebe?",
+    choices: ['A bike', 'Bookends', 'Wiper blades', 'Toilet seat covers'],
     showImg: true,
-    correct: 0,
+    correct: 3,
     pic:
-      'https://www.hexacta.com/wp-content/uploads/2016/09/custom-vs-packaged_productivity2.jpg'
+      'https://user-images.githubusercontent.com/5900152/101086798-4ba85400-35a9-11eb-8c9d-a1137837e6dc.jpg'
   }
 ];

@@ -1,7 +1,9 @@
 <template>
   <div>
     <div v-if="!isTypeChosen" class="host-home card">
-      <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+      <div class="img-header">
+        <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+      </div>
       <div class="card-body">
         <h5 class="card-title">Hello Quizmaster!</h5>
         <p class="card-text">
@@ -44,6 +46,7 @@
         :ablyClientId="ablyClientId"
         :quizType="quizType"
         :showHome="showHome"
+        :stopTheSnow="stopTheSnow"
       >
       </CreateQuizRoom>
     </template>
@@ -54,12 +57,12 @@
 import CreateQuizRoom from './CreateQuizRoom.vue';
 
 export default {
-  props: ['realtime', 'ablyClientId'],
+  props: ['realtime', 'ablyClientId', 'stopTheSnow'],
   data() {
     return {
       isTypeChosen: false,
       headerImgLink:
-        'https://user-images.githubusercontent.com/5900152/93231769-037b5180-f771-11ea-817a-0b4cd2ca7dc7.png',
+        'https://user-images.githubusercontent.com/5900152/100897082-3c48de00-34b7-11eb-813a-202acf9e9ac5.png',
       quizType: ''
     };
   },
@@ -82,12 +85,20 @@ export default {
 .host-home {
   margin: 0px auto;
   text-align: center;
-  width: 60%;
+  width: 65%;
 }
 
 button {
   margin: 5px;
   width: 60%;
   font-size: 20px;
+}
+.img-header {
+  width: 100%;
+  background-color: #dde0e1;
+}
+
+.card-img-top {
+  width: 80%;
 }
 </style>

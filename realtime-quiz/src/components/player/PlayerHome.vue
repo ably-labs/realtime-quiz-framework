@@ -1,7 +1,9 @@
 <template>
   <div>
     <div v-if="!showQuestions" class="player-home card">
-      <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+      <div class="img-header">
+        <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+      </div>
       <div v-if="!isRoomClosed" class="card-body">
         <h5 class="card-title">Hello {{ myNickname }}!</h5>
         <template v-if="!didPlayerEnterRoom">
@@ -87,7 +89,7 @@ import OnlinePlayers from '../common/OnlinePlayers.vue';
 import axios from 'axios';
 export default {
   name: 'WaitingArea',
-  props: ['realtime'],
+  props: ['realtime', 'stopTheSnow'],
   components: {
     Question,
     Answer,
@@ -99,7 +101,7 @@ export default {
       quizRoomCode: null,
       myQuizRoomCh: null,
       headerImgLink:
-        'https://user-images.githubusercontent.com/5900152/93231769-037b5180-f771-11ea-817a-0b4cd2ca7dc7.png',
+        'https://user-images.githubusercontent.com/5900152/100897082-3c48de00-34b7-11eb-813a-202acf9e9ac5.png',
       myNickname: '',
       myAvatarColor: null,
       didPlayerEnterRoom: false,
@@ -132,6 +134,7 @@ export default {
       this.myQuizRoomCh.subscribe('start-quiz-timer', msg => {
         this.didHostStartGame = true;
         this.timer = msg.data.countDownSec;
+        this.stopTheSnow();
       });
       this.myQuizRoomCh.subscribe('new-question', msg => {
         this.handleNewQuestionReceived(msg);
@@ -253,6 +256,15 @@ export default {
 </script>
 
 <style scoped>
+.img-header {
+  width: 100%;
+  background-color: #dde0e1;
+}
+
+.card-img-top {
+  width: 80%;
+}
+
 .alert-quiz-ended {
   width: 60%;
   margin: 20px auto;
