@@ -170,7 +170,7 @@ export default {
 
   .img-div {
     margin: 0 auto;
-    max-width: 30%;
+    max-width: 50%;
   }
 
   .q-img {

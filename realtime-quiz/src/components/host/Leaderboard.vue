@@ -1,5 +1,5 @@
 <template>
-  <div class="card text-white bg-warning mb-3 leaderboard">
+  <div class="card text-white bg-success mb-3 leaderboard">
     <div class="card-header"><h3>{{ finalScreen == false ? 'Top 5 scorers' : 'Final Leaderboard'}}</h3></div>
     <div class="card-body">
       <p class="card-text">

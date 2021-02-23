@@ -48,6 +48,25 @@ export default {
   max-height: 70px;
 }
 
+button {
+  margin: 5px;
+  width: 60%;
+  font-size: 20px;
+  background: rgb(255, 84, 22);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 84, 22, 1) 75%,
+    rgba(228, 0, 0, 1) 100%
+  );
+  border: 1px solid #ffffff;
+}
+
+button:hover {
+  background: #ffffff;
+  color: #e40000;
+  border: 1px solid #e40000;
+}
+
 @media only screen and (max-device-width: 480px) {
   .online-players {
     display: flex;

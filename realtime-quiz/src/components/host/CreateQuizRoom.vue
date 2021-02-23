@@ -16,7 +16,7 @@
             </p>
             <div class="sheets-template">
               <a
-                class="btn btn-primary btn-host btn-template"
+                class="orange-txt"
                 :href="templateCopyURL"
                 target="_blank"
                 role="button"
@@ -51,6 +51,7 @@
           placeholder="Enter nickname"
           v-model="hostNickname"
           :disabled="createBtnClicked"
+          @keyup.enter="createQuizRoom()"
         />
 
         <button
@@ -99,8 +100,8 @@
           </div>
         </template>
       </div>
-      <div class="card-footer text-muted">
-        <button type="button" class="btn btn-link" @click="showHome()">
+      <div class="card-footer text-muted div-black">
+        <button type="button" class="btn btn-link back-btn" @click="showHome()">
           &larr; Go back
         </button>
       </div>
@@ -141,7 +142,7 @@
       </div>
     </div>
     <div v-if="showFinalScreen" class="quizEnded">
-      <div class="alert alert-secondary end-msg" role="alert">
+      <div class="text-white end-msg">
         <h6>The quiz has ended</h6>
         <h1 class="display-4">Congratulations to the winners 🎉🎉🎉</h1>
       </div>
@@ -417,5 +418,74 @@ export default {
 .end-msg {
   text-align: center;
   margin: 10px auto;
+}
+
+button {
+  margin: 5px;
+  width: 60%;
+  font-size: 20px;
+  background: rgb(255, 84, 22);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 84, 22, 1) 75%,
+    rgba(228, 0, 0, 1) 100%
+  );
+  border: 1px solid #ffffff;
+}
+
+button:hover {
+  background: #ffffff;
+  color: #e40000;
+  border: 1px solid #e40000;
+}
+.back-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  padding: 0px;
+  margin: 0px;
+}
+
+.div-black {
+  background-color: #03020d;
+  color: #ffffff;
+}
+
+.back-btn:hover {
+  border: none;
+  background: none;
+  color: #ffffff;
+}
+
+.orange-txt {
+  color: #ff5416;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .host-home {
+    margin: 0px auto;
+    text-align: center;
+    width: 90%;
+    font-size: 0.9rem;
+  }
+  .nickname-input {
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .alert-quiz-ended {
+    width: 90%;
+    margin: 20px auto;
+    text-align: center;
+  }
+  .home-text {
+    font-size: 0.8rem;
+  }
+  button {
+    width: 90%;
+    font-size: 1rem;
+  }
 }
 </style>

@@ -12,6 +12,7 @@
               id="host-nickname"
               placeholder="Enter nickname"
               v-model="myNickname"
+              @keyup.enter="enterRoomWithNickname()"
             />
             <button
               type="button create-random-btn"
@@ -41,9 +42,10 @@
         Sorry this quiz room is no longer available to enter, either because the
         host is no longer online or the quiz has already started.
       </div>
-      <div class="card-footer text-muted">
+      <div class="card-footer text-muted div-black">
         <a
           href="https://github.com/Srushtika/realtime-quiz-framework"
+          class="link"
           target="_blank"
           >Learn how to build your own realtime quiz app with Ably &rarr;</a
         >
@@ -99,7 +101,7 @@ export default {
       quizRoomCode: null,
       myQuizRoomCh: null,
       headerImgLink:
-        'https://user-images.githubusercontent.com/5900152/93231769-037b5180-f771-11ea-817a-0b4cd2ca7dc7.png',
+        'https://user-images.githubusercontent.com/5900152/108396467-c713bc00-720e-11eb-95d8-a5f9e571b153.png',
       myNickname: '',
       myAvatarColor: null,
       didPlayerEnterRoom: false,
@@ -270,6 +272,32 @@ export default {
   text-align: center;
   margin: 0 auto;
 }
+
+button {
+  background: rgb(255, 84, 22);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 84, 22, 1) 75%,
+    rgba(228, 0, 0, 1) 100%
+  );
+  border: 1px solid #ffffff;
+}
+
+button:hover {
+  background: #ffffff;
+  color: #e40000;
+  border: 1px solid #e40000;
+}
+
+.div-black {
+  background-color: #03020d;
+  color: #ffffff;
+}
+
+.link {
+  color: #ffffff;
+}
+
 @media only screen and (max-device-width: 480px) {
   .player-home {
     margin: 0px auto;
