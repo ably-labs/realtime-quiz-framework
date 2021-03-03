@@ -1,5 +1,5 @@
 <template>
-  <div class="card bg-light mb-3 livestats-div">
+  <div class="card text-white bg-dark mb-3 livestats-div">
     <div class="card-header">Live stats</div>
     <div class="card-body">
       <h5 class="card-title">

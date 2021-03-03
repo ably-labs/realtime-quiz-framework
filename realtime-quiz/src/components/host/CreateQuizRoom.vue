@@ -56,7 +56,7 @@
 
         <button
           type="button create-random-btn"
-          class="btn btn-primary"
+          class="btn"
           @click="createQuizRoom()"
           :disabled="createBtnClicked"
         >
@@ -77,11 +77,7 @@
         <p class="card-text">
           Invite your players to join by sharing this link
         </p>
-        <button
-          type="button"
-          class="btn btn-primary"
-          @click="copyPlayerInviteLink()"
-        >
+        <button type="button" class="btn" @click="copyPlayerInviteLink()">
           {{ copyBtnText }}
           <i v-if="!copyClicked" class="far fa-copy"></i>
         </button>
@@ -94,7 +90,7 @@
         <template v-if="onlinePlayersArr.length > 0">
           <div v-if="!didHostStartGame">
             <hr />
-            <button type="button" class="btn btn-primary" @click="startQuiz()">
+            <button type="button" class="btn" @click="startQuiz()">
               Start the quiz
             </button>
           </div>
@@ -131,6 +127,7 @@
         <div v-if="showAnswer">
           <Leaderboard
             :leaderboard="leaderboard"
+            :isPlayer="false"
             :finalScreen="false"
           ></Leaderboard>
           <AdminPanel
@@ -146,7 +143,11 @@
         <h6>The quiz has ended</h6>
         <h1 class="display-4">Congratulations to the winners 🎉🎉🎉</h1>
       </div>
-      <Leaderboard :leaderboard="leaderboard" :finalScreen="true"></Leaderboard>
+      <Leaderboard
+        :leaderboard="leaderboard"
+        :isPlayer="false"
+        :finalScreen="true"
+      ></Leaderboard>
     </div>
   </div>
 </template>
@@ -155,8 +156,8 @@
 import Question from '../common/Question.vue';
 import OnlinePlayers from '../common/OnlinePlayers.vue';
 import AdminPanel from './AdminPanel.vue';
-import LiveStats from './LiveStats.vue';
-import Leaderboard from './Leaderboard.vue';
+import LiveStats from '../common/LiveStats.vue';
+import Leaderboard from '../common/Leaderboard.vue';
 import * as GSheetReader from 'g-sheets-api';
 export default {
   name: 'QuizType',
@@ -271,7 +272,6 @@ export default {
         isHost: true,
         quizType: this.quizType
       });
-      this.subscribeToHostChEvents();
       this.subscribeToRoomChEvents();
     },
     enterMainThread() {
@@ -288,15 +288,6 @@ export default {
           .toString(36)
           .substr(2, 8)
       );
-    },
-    subscribeToHostChEvents() {
-      this.hostAdminCh.subscribe('live-stats-update', msg => {
-        this.numAnswered = msg.data.numAnswered;
-        this.numPlaying = msg.data.numPlaying;
-      });
-      this.hostAdminCh.subscribe('full-leaderboard', msg => {
-        this.leaderboard = msg.data.leaderboard;
-      });
     },
     subscribeToRoomChEvents() {
       this.myQuizRoomCh.subscribe('new-player', msg => {
@@ -317,6 +308,13 @@ export default {
       });
       this.myQuizRoomCh.subscribe('correct-answer', msg => {
         this.handleCorrectAnswerReceived(msg);
+      });
+      this.myQuizRoomCh.subscribe('live-stats-update', msg => {
+        this.numAnswered = msg.data.numAnswered;
+        this.numPlaying = msg.data.numPlaying;
+      });
+      this.myQuizRoomCh.subscribe('full-leaderboard', msg => {
+        this.leaderboard = msg.data.leaderboard;
       });
     },
     handleNewPlayerEntered(msg) {
@@ -431,6 +429,7 @@ button {
     rgba(228, 0, 0, 1) 100%
   );
   border: 1px solid #ffffff;
+  color: #ffffff;
 }
 
 button:hover {
