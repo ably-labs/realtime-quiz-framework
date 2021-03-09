@@ -1,7 +1,9 @@
 <template>
   <div>
     <div v-if="!showQuestions" class="player-home card">
-      <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+      <a href="https://www.ably.com/" target="_blank">
+        <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+      </a>
       <div v-if="!isRoomClosed" class="card-body">
         <h5 class="card-title">Hello {{ myNickname }}!</h5>
         <template v-if="!didPlayerEnterRoom">
@@ -16,7 +18,7 @@
             />
             <button
               type="button create-random-btn"
-              class="btn btn-primary"
+              class="btn"
               @click="enterRoomWithNickname()"
             >
               GO
@@ -71,14 +73,36 @@
       :didAnswerCorrectly="didAnswerCorrectly"
       :isAdminView="false"
     ></Answer>
-    <div
-      v-if="didHostForceQuizEnd"
-      class="alert alert-danger alert-quiz-ended"
-      role="alert"
-    >
-      This quiz has ended. Either the host has ended it or they have simply
-      left. Please request the host to share a new link.
+    <Leaderboard
+      v-if="showAnswer && !showFinalScreen"
+      :leaderboard="leaderboard"
+      :finalScreen="false"
+      :isPlayer="true"
+    ></Leaderboard>
+    <div class="live-stats" v-if="!showAnswer && showQuestions">
+      <LiveStats
+        :numAnswered="numAnswered"
+        :numPlaying="numPlaying"
+      ></LiveStats>
     </div>
+    <template v-if="didHostForceQuizEnd">
+      <div class="alert alert-danger alert-quiz-ended" role="alert">
+        This quiz has ended <br />Either the host has ended it or they have
+        simply left. Please request the host to share a new link.
+      </div>
+    </template>
+    <template v-if="showFinalScreen">
+      <div class="quiz-end-player">
+        This quiz has ended
+      </div>
+      <div>
+        <Leaderboard
+          :isPlayer="true"
+          :leaderboard="leaderboard"
+          :finalScreen="true"
+        ></Leaderboard>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -86,6 +110,9 @@
 import Question from '../common/Question.vue';
 import Answer from '../common/Answer.vue';
 import OnlinePlayers from '../common/OnlinePlayers.vue';
+import LiveStats from '../common/LiveStats.vue';
+import Leaderboard from '../common/Leaderboard.vue';
+
 import axios from 'axios';
 export default {
   name: 'WaitingArea',
@@ -93,7 +120,9 @@ export default {
   components: {
     Question,
     Answer,
-    OnlinePlayers
+    OnlinePlayers,
+    LiveStats,
+    Leaderboard
   },
   data() {
     return {
@@ -123,7 +152,11 @@ export default {
       clickedPlayerAnswerIndex: null,
       showImg: false,
       questionImgLink: null,
-      didHostForceQuizEnd: false
+      didHostForceQuizEnd: false,
+      numAnswered: 0,
+      numPlaying: 0,
+      leaderboard: null,
+      showFinalScreen: false
     };
   },
   methods: {
@@ -150,6 +183,13 @@ export default {
       this.myQuizRoomCh.subscribe('quiz-ending', () => {
         this.handleQuizEnding();
       });
+      this.myQuizRoomCh.subscribe('live-stats-update', msg => {
+        this.numAnswered = msg.data.numAnswered;
+        this.numPlaying = msg.data.numPlaying;
+      });
+      this.myQuizRoomCh.subscribe('full-leaderboard', msg => {
+        this.leaderboard = msg.data.leaderboard;
+      });
     },
     handleNewPlayerEntered(msg) {
       let { clientId, nickname, avatarColor } = msg.data.newPlayerState;
@@ -168,6 +208,8 @@ export default {
       this.isLastQuestion = msg.data.isLastQuestion;
       this.showImg = msg.data.showImg;
       this.questionImgLink = msg.data.imgLink;
+      this.numAnswered = msg.data.numAnswered;
+      this.numPlaying = msg.data.numPlaying;
     },
     handleCorrectAnswerReceived(msg) {
       if (this.newQuestionNumber == msg.data.questionNumber) {
@@ -181,6 +223,9 @@ export default {
           this.didAnswerCorrectly = false;
         }
         this.showAnswer = true;
+      }
+      if (this.isLastQuestion) {
+        this.showFinalScreen = true;
       }
     },
     handleQuizEnding() {
@@ -273,6 +318,10 @@ export default {
   margin: 0 auto;
 }
 
+.player-leaderboard {
+  width: 40%;
+}
+
 button {
   background: rgb(255, 84, 22);
   background: linear-gradient(
@@ -281,9 +330,16 @@ button {
     rgba(228, 0, 0, 1) 100%
   );
   border: 1px solid #ffffff;
+  color: #ffffff;
 }
 
 button:hover {
+  background: #ffffff;
+  color: #e40000;
+  border: 1px solid #e40000;
+}
+
+button:active {
   background: #ffffff;
   color: #e40000;
   border: 1px solid #e40000;
@@ -296,6 +352,19 @@ button:hover {
 
 .link {
   color: #ffffff;
+}
+
+.live-stats {
+  width: 50%;
+  margin: 0px auto;
+  text-align: center;
+}
+
+.quiz-end-player {
+  color: #ffffff;
+  margin: auto;
+  text-align: center;
+  font-size: 2rem;
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -313,6 +382,11 @@ button:hover {
   }
   .alert-quiz-ended {
     width: 90%;
+    margin: 20px auto;
+    text-align: center;
+  }
+  .live-stats {
+    width: 100%;
     margin: 20px auto;
     text-align: center;
   }

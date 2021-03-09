@@ -2,7 +2,9 @@
   <div>
     <div v-if="!isTypeChosen" class="host-home card">
       <div class="img-header">
-        <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+        <a href="https://www.ably.com/" target="_blank">
+          <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+        </a>
       </div>
       <div class="card-body home-text">
         <h5 class="card-title">Hello Quizmaster!</h5>
@@ -19,17 +21,14 @@
         </p>
         <template v-if="!isSmallWidth">
           <button
-            class="btn btn-primary"
+            class="btn"
+            id="btn-1"
             type="submit"
             @click="setQuizType('CustomQuiz')"
           >
             Create your own quiz
           </button>
-          <button
-            class="btn btn-primary"
-            type="submit"
-            @click="setQuizType('RandomQuiz')"
-          >
+          <button class="btn" type="submit" @click="setQuizType('RandomQuiz')">
             Host a randomly chosen quiz
           </button>
         </template>
@@ -119,6 +118,7 @@ button {
     rgba(228, 0, 0, 1) 100%
   );
   border: 1px solid #ffffff;
+  color: #ffffff;
 }
 
 button:hover {
