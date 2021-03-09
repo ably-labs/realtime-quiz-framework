@@ -195,7 +195,7 @@ function computeTopScorers() {
     }
   }
   leaderboard.sort((a, b) => b.score - a.score);
-  hostAdminCh.publish('full-leaderboard', {
+  quizRoomChannel.publish('full-leaderboard', {
     leaderboard: leaderboard
   });
 }
@@ -210,10 +210,11 @@ function subscribeToPlayerChannel(playerChannel, playerId) {
     }
     updateLiveStatsForHost(numPlayersAnswered, totalPlayers - 1);
   });
+  updateLiveStatsForHost(numPlayersAnswered, totalPlayers - 1);
 }
 
 function updateLiveStatsForHost(numAnswered, numPlaying) {
-  hostAdminCh.publish('live-stats-update', {
+  quizRoomChannel.publish('live-stats-update', {
     numAnswered: numAnswered,
     numPlaying: numPlaying
   });
