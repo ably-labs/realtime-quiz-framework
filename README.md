@@ -2,17 +2,17 @@
 
 This repository contains a scalable framework for building a real-time quiz app, which can double up as a test-taking app in an e-learning scenario or be used for a Pub Quiz Friday with your work mates.
 
-<img width="1424" alt="Host home" src="https://user-images.githubusercontent.com/5900152/96634667-bd3a8480-1312-11eb-80ea-5a72ef329692.png">
+<img width="1424" alt="Host home" src="./assets/96634667-bd3a8480-1312-11eb-80ea-5a72ef329692.png">
 
 It provides full control of the sequence of events to the host and is able to simultaneously run any number of quiz rooms, with any number of people in each of those (using Node JS worker threads!).
 
-<img width="1440" alt="Custom quiz option" src="https://user-images.githubusercontent.com/5900152/96635120-608b9980-1313-11eb-86b7-059ff18e7d1e.png">
+<img width="1440" alt="Custom quiz option" src="./assets/96635120-608b9980-1313-11eb-86b7-059ff18e7d1e.png">
 
 The hosts have an option to add their own questions, optionally with images, via Google Sheets.
 
-<img width="1437" alt="Ongoing quiz screen" src="https://user-images.githubusercontent.com/5900152/96634661-bad82a80-1312-11eb-9e61-661e42eaf485.png">
+<img width="1437" alt="Ongoing quiz screen" src="./assets/96634661-bad82a80-1312-11eb-9e61-661e42eaf485.png">
 
-<img width="1438" alt="Host admin controls" src="https://user-images.githubusercontent.com/5900152/96634642-b6ac0d00-1312-11eb-9ebb-0b7cd9122fc3.png">
+<img width="1438" alt="Host admin controls" src="./assets/96634642-b6ac0d00-1312-11eb-9ebb-0b7cd9122fc3.png">
 
 The real-time messaging is powered by [Ably’s real-time infrastructure](https://www.ably.com), meaning, it can have enterprise-level scalability without needing to change anything in the code. Ideally, you’d take this open-sourced framework as a starting point and customize it to make it your own.
 
@@ -215,7 +215,7 @@ All the players send their answers to the server, which in turn collates them to
 
 The client-side script will use this information from the server and render various components accordingly, ensuring all the players are fully in-sync.
 
-<img width="831" alt="App architecture" src="https://user-images.githubusercontent.com/5900152/96641748-190a0b00-131d-11eb-817e-7e9722b78a4b.png">
+<img width="831" alt="App architecture" src="./assets/96641748-190a0b00-131d-11eb-817e-7e9722b78a4b.png">
 
 #### The WebSockets protocol
 
@@ -237,7 +237,7 @@ In any realtime app, there's a lot of moving data involved. [Channels](https://w
 
 #### Sequence of events with Node JS worker threads (For an example quiz)
 
-<img width="1087" alt="Sequence of events" src="https://user-images.githubusercontent.com/5900152/96642271-d72d9480-131d-11eb-8457-df6178cf4196.png">
+<img width="1087" alt="Sequence of events" src="./assets/96642271-d72d9480-131d-11eb-8457-df6178cf4196.png">
 
 ---
 
