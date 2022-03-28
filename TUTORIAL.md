@@ -61,14 +61,14 @@ This information is used by the main server thread to maintain a list of active 
 
 #### Connecting to Ably
 
-In order to use this kit, you will need an Ably API key. If you are not already signed up, you can [sign up now for a free Ably account](https://www.ably.io/signup). Once you have an Ably account:
+In order to use this kit, you will need an Ably API key. If you are not already signed up, you can [sign up now for a free Ably account](https://www.ably.com/signup). Once you have an Ably account:
 
 - Log into your app dashboard
 - Under **Your apps**, click on **Manage app** for any app you wish to use for this tutorial, or create a new one with the **Create New App** button
 - Click on the **API Keys** tab
 - Copy the secret **API Key** value from your Root key.
 
-The server-side scripts connect to Ably using [Basic Authentication](https://www.ably.io/documentation/core-features/authentication#basic-authentication), i.e. by using the API Key directly as shown below:
+The server-side scripts connect to Ably using [Basic Authentication](https://www.ably.com/documentation/core-features/authentication#basic-authentication), i.e. by using the API Key directly as shown below:
 
 ```js
 const realtime = new Ably.Realtime({
@@ -79,7 +79,7 @@ const realtime = new Ably.Realtime({
 
 Note: Setting the `echoMessages` false prevents the server from receiving its own messages.
 
-The main server thread uses Express to listen to HTTP requests. It has an `/auth` endpoint that is used by the client-side scripts to authenticate with Ably using tokens. This is a recommended strategy as placing your secret API Key in a front-end script exposes it to potential misuse. The client-side scripts connect to Ably using [Token Authentication](https://www.ably.io/documentation/core-features/authentication#token-authentication) as shown below:
+The main server thread uses Express to listen to HTTP requests. It has an `/auth` endpoint that is used by the client-side scripts to authenticate with Ably using tokens. This is a recommended strategy as placing your secret API Key in a front-end script exposes it to potential misuse. The client-side scripts connect to Ably using [Token Authentication](https://www.ably.com/documentation/core-features/authentication#token-authentication) as shown below:
 
 ```js
 const realtime = new Ably.Realtime({
@@ -118,7 +118,7 @@ const realtime = new Ably.Realtime({
 });
 ```
 
-Ably.Realtime takes the client options JSON object as an argument and we have the Ably API Key ([Basic auth](https://www.ably.io/documentation/core-features/authentication#basic-authentication)) and `echoMessages` which when set to false prevents the client from receiving their own messages i.e if they are publishing to a channel that they are subscribed to.
+Ably.Realtime takes the client options JSON object as an argument and we have the Ably API Key ([Basic auth](https://www.ably.com/documentation/core-features/authentication#basic-authentication)) and `echoMessages` which when set to false prevents the client from receiving their own messages i.e if they are publishing to a channel that they are subscribed to.
 
 Next, we set up a few routes, and have express handle them using `app.get(‘/route’, callback)`. We have the following routes:
 
@@ -840,4 +840,4 @@ This component displays the correct answer for the previously displayed question
 
 That's all the code! All the components are extensible and can be used as a starting point to customize the app as per your requirements.
 
-If you have any questions, feel free to [give me a shout on Twitter](https://twitter.com/Srushtika) or [reach out to the support team at Ably](mailto:support@ably.io).
+If you have any questions, feel free to [give me a shout on Twitter](https://twitter.com/Srushtika) or [reach out to the support team at Ably](mailto:support@ably.com).
