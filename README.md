@@ -14,11 +14,11 @@ The hosts have an option to add their own questions, optionally with images, via
 
 <img width="1438" alt="Host admin controls" src="https://user-images.githubusercontent.com/5900152/96634642-b6ac0d00-1312-11eb-9ebb-0b7cd9122fc3.png">
 
-The real-time messaging is powered by [Ably’s real-time infrastructure](https://www.ably.io), meaning, it can have enterprise-level scalability without needing to change anything in the code. Ideally, you’d take this open-sourced framework as a starting point and customize it to make it your own.
+The real-time messaging is powered by [Ably’s real-time infrastructure](https://www.ably.com), meaning, it can have enterprise-level scalability without needing to change anything in the code. Ideally, you’d take this open-sourced framework as a starting point and customize it to make it your own.
 
 This framework is built on top of the [multiplayer games networking framework](https://github.com/Srushtika/multiplayer-games-scalable-networking-framework) that allows continuous streaming of data between various players and the game server. This framework is a bit different in that it allows for a more on-demand progression of the app by giving adequate controls of the app flow to the host.
 
-You can check out a [blog article](https://www.ably.io/blog/a-scalable-realtime-quiz-framework-to-build-edtech-apps/) I wrote, to learn more about the uses of this framework.
+You can check out a [blog article](https://www.ably.com/blog/a-scalable-realtime-quiz-framework-to-build-edtech-apps/) I wrote, to learn more about the uses of this framework.
 
 #### Check out the [functional demo](https://quiz.ably.dev/) for this realtime quiz framework.
 
@@ -64,7 +64,7 @@ You can check out a [blog article](https://www.ably.io/blog/a-scalable-realtime-
    cd ..
    ```
 
-4. Create a free account with [Ably Realtime](https://www.ably.io/) to get your Ably API KEY. Add a new file called `.env` and add the following. (Remember to replace the placeholder with your own API Key. You can get your Ably API key from your Ably dashboard):
+4. Create a free account with [Ably Realtime](https://www.ably.com/) to get your Ably API KEY. Add a new file called `.env` and add the following. (Remember to replace the placeholder with your own API Key. You can get your Ably API key from your Ably dashboard):
 
    ```
    ABLY_API_KEY=<YOUR-ABLY-API-KEY>
@@ -96,7 +96,7 @@ Voila! Your live quiz framework is up and running. Customize this framework and 
 This file has the main server thread. It performs three functions:
 
 - Serve the front-end VueJS app using Express.
-- Authenticate front-end clients with the Ably Realtime service using [Token Auth strategy](https://www.ably.io/documentation/core-features/authentication#token-authentication).
+- Authenticate front-end clients with the Ably Realtime service using [Token Auth strategy](https://www.ably.com/documentation/core-features/authentication#token-authentication).
 - Create and manage Node JS worker threads when a host requests to create a quiz room.
 
 2. `quiz-room-server.js`
@@ -219,21 +219,21 @@ The client-side script will use this information from the server and render vari
 
 #### The WebSockets protocol
 
-The [WebSockets protocol](https://www.ably.io/concepts/websockets), unlike HTTP, is a stateful communications protocol that works over TCP. The communication initially starts off as an HTTP handshake, but if both the communicating parties agree to continue over WebSockets then the connection is elevated; giving rise to a full-duplex, persistent connection. This means the connection remains open for the duration that the application is in use. This gives the server a way to initiate any communication and send data to pre-subscribed clients, so they don’t have to keep sending requests inquiring about the availability of new data. Which is exactly what we need in our quiz!
+The [WebSockets protocol](https://www.ably.com/concepts/websockets), unlike HTTP, is a stateful communications protocol that works over TCP. The communication initially starts off as an HTTP handshake, but if both the communicating parties agree to continue over WebSockets then the connection is elevated; giving rise to a full-duplex, persistent connection. This means the connection remains open for the duration that the application is in use. This gives the server a way to initiate any communication and send data to pre-subscribed clients, so they don’t have to keep sending requests inquiring about the availability of new data. Which is exactly what we need in our quiz!
 
-This project uses [Ably Realtime](https://www.ably.io) to implement WebSocket based realtime messaging between the server, host and the players. Ably, by default, deals with scalability, protocol interoperability, reliable message ordering, guaranteed message delivery, historical message retention and authentication, so we don't have to. This communication follows the [Pub/Sub messaging pattern](https://www.ably.io/concepts/pub-sub).
+This project uses [Ably Realtime](https://www.ably.com) to implement WebSocket based realtime messaging between the server, host and the players. Ably, by default, deals with scalability, protocol interoperability, reliable message ordering, guaranteed message delivery, historical message retention and authentication, so we don't have to. This communication follows the [Pub/Sub messaging pattern](https://www.ably.com/concepts/pub-sub).
 
 ##### Publish/Subscribe messaging pattern
 
-[Pub/Sub](https://www.ably.io/concepts/pub-sub) messaging allows various front-end or back-end clients to publish some data and/or subscribe to some data. For any active subscriptions, these clients will receive asynchronous event callbacks when a new message is published.
+[Pub/Sub](https://www.ably.com/concepts/pub-sub) messaging allows various front-end or back-end clients to publish some data and/or subscribe to some data. For any active subscriptions, these clients will receive asynchronous event callbacks when a new message is published.
 
 ##### Channels
 
-In any realtime app, there's a lot of moving data involved. [Channels](https://www.ably.io/documentation/core-features/channels) help us group this data logically and let us implement subscriptions per channel. This allowing us to implement the custom callback logic for different scenarios. In the diagram above, each color would represent a channel.
+In any realtime app, there's a lot of moving data involved. [Channels](https://www.ably.com/documentation/core-features/channels) help us group this data logically and let us implement subscriptions per channel. This allowing us to implement the custom callback logic for different scenarios. In the diagram above, each color would represent a channel.
 
 ##### Presence
 
-[Presence](https://www.ably.io/documentation/core-features/presence) is an Ably feature using which you can track the connection status of various clients on a channel. In essence, you can see who has just come online and who has left using each client's unique `clientId`
+[Presence](https://www.ably.com/documentation/core-features/presence) is an Ably feature using which you can track the connection status of various clients on a channel. In essence, you can see who has just come online and who has left using each client's unique `clientId`
 
 #### Sequence of events with Node JS worker threads (For an example quiz)
 
