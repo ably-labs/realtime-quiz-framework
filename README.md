@@ -52,7 +52,7 @@ You can check out a [blog article](https://www.ably.io/blog/a-scalable-realtime-
 2. Change directory into the project folder
 
    ```sh
-   cd https://github.com/Srushtika/realtime-quiz-framework.git
+   cd realtime-quiz-framework
    ```
 
 3. Install the dependencies
@@ -77,7 +77,7 @@ You can check out a [blog article](https://www.ably.io/blog/a-scalable-realtime-
    node server.js
    ```
 
-6. Open the app in your browser at [https://localhost:5000](https://localhost:5000). Choose the quiz type and create a quiz room.
+6. Open the app in your browser at [http://localhost:5000](http://localhost:5000). Choose the quiz type and create a quiz room.
 
 7. Copy the shareable link and open it in a separate browser window. This is best experienced in mobile view. Open multiple of these to simulate multiple players if you like.
 
