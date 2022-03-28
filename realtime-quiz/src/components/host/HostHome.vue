@@ -2,8 +2,13 @@
   <div>
     <div v-if="!isTypeChosen" class="host-home card">
       <div class="img-header">
-        <a href="https://www.ably.com/" target="_blank">
-          <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+        <a href="https://www.ably.com/" class="ably-branding" target="_blank">
+          <h2>Live Quiz App</h2>
+          <hr />
+          <div class="ably-power">
+            <strong>powered by</strong>
+            <img :src="headerLogo" alt="Header image" />
+          </div>
         </a>
       </div>
       <div class="card-body home-text">
@@ -69,8 +74,8 @@ export default {
   data() {
     return {
       isTypeChosen: false,
-      headerImgLink:
-        'https://user-images.githubusercontent.com/5900152/108396467-c713bc00-720e-11eb-95d8-a5f9e571b153.png',
+      headerLogo:
+        'https://static.ably.dev/logo-h-white.svg?realtime-quiz-framework',
       quizType: '',
       windowWidth: window.innerWidth
     };

@@ -1,8 +1,13 @@
 <template>
   <div>
     <div v-if="!showQuestions" class="player-home card">
-      <a href="https://www.ably.com/" target="_blank">
-        <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+      <a href="https://www.ably.com/" class="ably-branding" target="_blank">
+        <h2>Live Quiz App</h2>
+        <hr />
+        <div class="ably-power">
+          <strong>powered by</strong>
+          <img :src="headerLogo" alt="Header image" />
+        </div>
       </a>
       <div v-if="!isRoomClosed" class="card-body">
         <h5 class="card-title">Hello {{ myNickname }}!</h5>
@@ -92,9 +97,7 @@
       </div>
     </template>
     <template v-if="showFinalScreen">
-      <div class="quiz-end-player">
-        This quiz has ended
-      </div>
+      <div class="quiz-end-player">This quiz has ended</div>
       <div>
         <Leaderboard
           :isPlayer="true"
@@ -129,8 +132,8 @@ export default {
       isRoomClosed: null,
       quizRoomCode: null,
       myQuizRoomCh: null,
-      headerImgLink:
-        'https://user-images.githubusercontent.com/5900152/108396467-c713bc00-720e-11eb-95d8-a5f9e571b153.png',
+      headerLogo:
+        'https://static.ably.dev/logo-h-white.svg?realtime-quiz-framework',
       myNickname: '',
       myAvatarColor: null,
       didPlayerEnterRoom: false,
@@ -161,33 +164,33 @@ export default {
   },
   methods: {
     subscribeToQuizRoomChEvents() {
-      this.myQuizRoomCh.subscribe('new-player', msg => {
+      this.myQuizRoomCh.subscribe('new-player', (msg) => {
         this.handleNewPlayerEntered(msg);
       });
-      this.myQuizRoomCh.subscribe('start-quiz-timer', msg => {
+      this.myQuizRoomCh.subscribe('start-quiz-timer', (msg) => {
         this.didHostStartGame = true;
         this.timer = msg.data.countDownSec;
       });
-      this.myQuizRoomCh.subscribe('new-question', msg => {
+      this.myQuizRoomCh.subscribe('new-question', (msg) => {
         this.handleNewQuestionReceived(msg);
       });
-      this.myQuizRoomCh.subscribe('question-timer', msg => {
+      this.myQuizRoomCh.subscribe('question-timer', (msg) => {
         this.questionTimer = msg.data.countDownSec;
         if (this.questionTimer < 0) {
           this.questionTimer = 30;
         }
       });
-      this.myQuizRoomCh.subscribe('correct-answer', msg => {
+      this.myQuizRoomCh.subscribe('correct-answer', (msg) => {
         this.handleCorrectAnswerReceived(msg);
       });
       this.myQuizRoomCh.subscribe('quiz-ending', () => {
         this.handleQuizEnding();
       });
-      this.myQuizRoomCh.subscribe('live-stats-update', msg => {
+      this.myQuizRoomCh.subscribe('live-stats-update', (msg) => {
         this.numAnswered = msg.data.numAnswered;
         this.numPlaying = msg.data.numPlaying;
       });
-      this.myQuizRoomCh.subscribe('full-leaderboard', msg => {
+      this.myQuizRoomCh.subscribe('full-leaderboard', (msg) => {
         this.leaderboard = msg.data.leaderboard;
       });
     },
@@ -278,17 +281,13 @@ export default {
     this.quizRoomCode = this.$route.query.quizCode;
     await axios
       .get('/checkRoomStatus?quizCode=' + this.quizRoomCode)
-      .then(roomStatusInfo => {
+      .then((roomStatusInfo) => {
         this.isRoomClosed = roomStatusInfo.data.isRoomClosed;
       });
     this.myQuizRoomCh = this.realtime.channels.get(
       `${this.quizRoomCode}:primary`
     );
-    this.myAvatarColor =
-      '#' +
-      Math.random()
-        .toString(16)
-        .slice(-6);
+    this.myAvatarColor = '#' + Math.random().toString(16).slice(-6);
   },
   beforeDestroy() {
     if (this.myQuizRoomCh) {
