@@ -33,7 +33,7 @@ You can check out a [blog article](https://www.ably.com/blog/a-scalable-realtime
 
 ##### Libraries
 
-- [Ably Realtime](https://ably.io/)
+- [Ably Realtime](https://ably.com/)
 - [Express](https://expressjs.com/)
 - [Vue Router](https://router.vuejs.org/)
 - [Axios](https://www.npmjs.com/package/axios)
@@ -66,16 +66,16 @@ You can check out a [blog article](https://www.ably.com/blog/a-scalable-realtime
 
 4. Create a free account with [Ably Realtime](https://www.ably.com/) to get your Ably API KEY. Add a new file called `.env` and add the following. (Remember to replace the placeholder with your own API Key. You can get your Ably API key from your Ably dashboard):
 
-   ```
-   ABLY_API_KEY=<YOUR-ABLY-API-KEY>
-   PORT=5000
-   ```
+```
+ABLY_API_KEY=<YOUR-ABLY-API-KEY>
+PORT=5000
+```
 
 5. Run the server
 
-   ```sh
-   node server.js
-   ```
+```sh
+node server.js
+```
 
 6. Open the app in your browser at [http://localhost:5000](http://localhost:5000). Choose the quiz type and create a quiz room.
 
