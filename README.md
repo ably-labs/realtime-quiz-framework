@@ -45,43 +45,40 @@ You can check out a [blog article](https://www.ably.com/blog/a-scalable-realtime
 
 1. Clone this repository
 
-   ```sh
-   git clone https://github.com/Srushtika/realtime-quiz-framework.git
-   ```
+```sh
+git clone https://github.com/Srushtika/realtime-quiz-framework.git
+```
 
-2. Change directory into the project folder
+2. Change directory to the project folder and Install dependencies
 
-   ```sh
-   cd realtime-quiz-framework
-   ```
+```sh
+cd realtime-quiz-framework
+npm install
 
-3. Install the dependencies
+cd realtime-quiz
+npm install
 
-   ```sh
-   npm install
-   cd realtime-quiz
-   npm install
-   cd ..
-   ```
+cd ..
+```
 
-4. Create a free account with [Ably Realtime](https://www.ably.com/) to get your Ably API KEY. Add a new file called `.env` and add the following. (Remember to replace the placeholder with your own API Key. You can get your Ably API key from your Ably dashboard):
+3. Create a free account with [Ably Realtime](https://www.ably.com/) to get your Ably API KEY. Add a new file called `.env` and add the following, or use the example `.env.example` and save that as `.env`.(Remember to replace the placeholder with your own API Key. You can get your Ably API key from your Ably dashboard):
 
 ```
 ABLY_API_KEY=<YOUR-ABLY-API-KEY>
 PORT=5000
 ```
 
-5. Run the server
+4. Run the server
 
 ```sh
 node server.js
 ```
 
-6. Open the app in your browser at [http://localhost:5000](http://localhost:5000). Choose the quiz type and create a quiz room.
+5. Open the app in your browser at [http://localhost:5000](http://localhost:5000). Choose the quiz type and create a quiz room.
 
-7. Copy the shareable link and open it in a separate browser window. This is best experienced in mobile view. Open multiple of these to simulate multiple players if you like.
+6. Copy the shareable link and open it in a separate browser window. This is best experienced in mobile view. Open multiple of these to simulate multiple players if you like.
 
-8. Start the quiz when you are ready and have the players answer the questions as they appear.
+7. Start the quiz when you are ready and have the players answer the questions as they appear.
 
 Voila! Your live quiz framework is up and running. Customize this framework and make it your own. Feel free to share your quiz app with me on [Twitter](https://twitter.com/Srushtika), I'll be happy to give it a shoutout!
 
