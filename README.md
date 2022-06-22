@@ -52,10 +52,9 @@ git clone https://github.com/ably-labs/realtime-quiz-framework.git
 2. Change directory to the project folder and Install dependencies
 
 ```sh
-cd realtime-quiz-framework
 npm install
 
-cd realtime-quiz-framework
+cd realtime-quiz/
 npm install
 
 cd ..
