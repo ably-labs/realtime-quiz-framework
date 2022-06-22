@@ -46,7 +46,7 @@ You can check out a [blog article](https://www.ably.com/blog/a-scalable-realtime
 1. Clone this repository
 
 ```sh
-git clone https://github.com/Srushtika/realtime-quiz-framework.git
+git clone https://github.com/ably-labs/realtime-quiz-framework.git
 ```
 
 2. Change directory to the project folder and Install dependencies
@@ -55,7 +55,7 @@ git clone https://github.com/Srushtika/realtime-quiz-framework.git
 cd realtime-quiz-framework
 npm install
 
-cd realtime-quiz
+cd realtime-quiz-framework
 npm install
 
 cd ..
@@ -93,9 +93,10 @@ Voila! Your live quiz framework is up and running. Customize this framework and 
 This file has the main server thread. It performs three functions:
 
 - Serve the front-end VueJS app using Express.
-- Authenticate front-end clients with the Ably Realtime service using [Token Auth strategy](https://www.ably.com/documentation/core-features/authentication#token-authentication).
-- Create and manage Node JS worker threads when a host requests to create a quiz room.
 
+- Authenticate front-end clients with the Ably Realtime service using [Token Auth strategy](https://www.ably.com/documentation/core-features/authentication#token-authentication).
+
+- Create and manage Node JS worker threads when a host requests to create a quiz room.
 2. `quiz-room-server.js`
 
 This file represents a Node JS worker thread. A new instance of this file will run for every quiz room created.
@@ -137,63 +138,63 @@ realtime-quiz
             |___PlayerHome.vue
 ```
 
-1.  `dist` folder
+1. `dist` folder
+   
+   The dist folder contains the built Vue app that is auto-generated when you run the `npm run build` command after finishing your work on the Vue app. The `index.html` file in this folder is what’s served by our express server (for all routes, as routing is handled in the front-end using `vue-router`)
 
-    The dist folder contains the built Vue app that is auto-generated when you run the `npm run build` command after finishing your work on the Vue app. The `index.html` file in this folder is what’s served by our express server (for all routes, as routing is handled in the front-end using `vue-router`)
+2. `public` folder
+   
+   The public folder contains the `index.html` file inside which all the components will be rendered based on the app logic.
 
-2.  `public` folder
+3. `src` folder, `main.js` and `routes.js`
+   
+   The src folder contains our app files starting with the main.js file which instantiates a new Vue instance with `App.vue` being the top-level component. We also instantiate the Vue Router instance in this file. The different components to be rendered based on the routes are listed in the routes.js file.
 
-    The public folder contains the `index.html` file inside which all the components will be rendered based on the app logic.
+4. `App.vue`
+   
+   As this is the top-level component for our Vue app, it instantiates the Ably library using the Token Authentication strategy and passes on the `realtime` instance to its child components so they can use it as they need.
 
-3.  `src` folder, `main.js` and `routes.js`
+5. `components` folder
+   This folder contains all the child components for `App.vue`. They are placed in different folders for a better context.
+   
+   The `common` folder has components that are common to the host of the quiz app and the players. The `host` folder has components that are visible to the host only. The `player` folder has components that are visible to the player only.
 
-    The src folder contains our app files starting with the main.js file which instantiates a new Vue instance with `App.vue` being the top-level component. We also instantiate the Vue Router instance in this file. The different components to be rendered based on the routes are listed in the routes.js file.
+6. `common/OnlinePlayers.vue`
+   
+   This component holds the logic and UI to show a staging area with a list of players who are online. New players are added to this list as they join in realtime. For every player, a thumbnail of their randomly chosen unique colored avatar along with a name as a tagline underneath appears.
 
-4.  `App.vue`
+7. `common/Question.vue`
+   
+   This component holds the logic and UI to show a card with the question, optionally an image, and four options.
+   
+   The players have buttons to choose one of the options whereas the host has the options listed as non-clickable divs as they won’t be answering the questions.
 
-    As this is the top-level component for our Vue app, it instantiates the Ably library using the Token Authentication strategy and passes on the `realtime` instance to its child components so they can use it as they need.
+8. `common/Answer.vue`
+   
+   This component holds the logic and UI to show a card with the answer. For the player, this component appears standalone and also indicates if the option they chose was correct or not. For the host, this component replaces the four options in the question.
 
-5.  `components` folder
-    This folder contains all the child components for `App.vue`. They are placed in different folders for a better context.
-
-    The `common` folder has components that are common to the host of the quiz app and the players. The `host` folder has components that are visible to the host only. The `player` folder has components that are visible to the player only.
-
-6.  `common/OnlinePlayers.vue`
-
-    This component holds the logic and UI to show a staging area with a list of players who are online. New players are added to this list as they join in realtime. For every player, a thumbnail of their randomly chosen unique colored avatar along with a name as a tagline underneath appears.
-
-7.  `common/Question.vue`
-
-    This component holds the logic and UI to show a card with the question, optionally an image, and four options.
-
-    The players have buttons to choose one of the options whereas the host has the options listed as non-clickable divs as they won’t be answering the questions.
-
-8.  `common/Answer.vue`
-
-    This component holds the logic and UI to show a card with the answer. For the player, this component appears standalone and also indicates if the option they chose was correct or not. For the host, this component replaces the four options in the question.
-
-9.  `host/HostHome.vue`
-
-    This is the main component that is shown when anyone lands on the app. By default, all the hosts land on this page and they get a shareable URL to invite their players after they have chosen the type of quiz they'd like to host. This component allows the host to choose the quiz type and provides a way to upload their own questions if they need.
+9. `host/HostHome.vue`
+   
+   This is the main component that is shown when anyone lands on the app. By default, all the hosts land on this page and they get a shareable URL to invite their players after they have chosen the type of quiz they'd like to host. This component allows the host to choose the quiz type and provides a way to upload their own questions if they need.
 
 10. `host/CreateQuizRoom.vue`
-
+    
     This component holds the logic and UI to allow the host to create a new quiz room and get a shareable URL to invite players to that quiz room.
 
 11. `host/Leaderboard.vue`
-
+    
     This component is visible to the host after every question. It shows the top five scorers in the quiz until that point. If the quiz has ended, the same component displays a full leaderboard with all the participants.
 
 12. `host/AdminPanel.vue`
-
+    
     This component is visible to the host after every question, giving them options to show the next question when they are ready, or end the quiz midway through.
 
 13. `host/LiveStats.vue`
-
+    
     This component is visible to the host at the time of a question being displayed. It shows live stats on how many players are still online and out of those, how many have already selected an option for that question. This component can be extended to include the names of the players who have answered, as they do, or any other live stats.
 
 14. `player/Playerhome.vue`
-
+    
     This component is visible to the player. This is the first page they see when they follow a link shared by their host. It allows them to add their nickname and enter the quiz room created by their host. They’ll be waiting along with other players until the host decides to start the quiz.
 
 If you want to learn more about the source code, you should check out the [TUTORIAL.md](https://github.com/Srushtika/realtime-quiz-framework/blob/main/TUTORIAL.md) for a more thorough breakdown.
@@ -212,7 +213,7 @@ All the players send their answers to the server, which in turn collates them to
 
 The client-side script will use this information from the server and render various components accordingly, ensuring all the players are fully in-sync.
 
-<img width="831" alt="App architecture" src="./assets/96641748-190a0b00-131d-11eb-817e-7e9722b78a4b.png">
+![](./assets/a-simplified-architecture-for-multiplayer-quiz.png)
 
 #### The WebSockets protocol
 
@@ -234,7 +235,7 @@ In any realtime app, there's a lot of moving data involved. [Channels](https://w
 
 #### Sequence of events with Node JS worker threads (For an example quiz)
 
-<img width="1087" alt="Sequence of events" src="./assets/96642271-d72d9480-131d-11eb-8457-df6178cf4196.png">
+![](./assets/ably-channels-for-multiplayer-quiz-implementation.png)
 
 ---
 
