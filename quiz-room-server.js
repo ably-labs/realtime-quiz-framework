@@ -24,7 +24,7 @@ console.log('room code is' + workerData.hostRoomCode);
 
 let questions = [];
 
-const realtime = Ably.Realtime({
+const realtime = new Ably.Realtime({
   key: ABLY_API_KEY,
   echoMessages: false
 });
