@@ -71,7 +71,7 @@ In order to use this kit, you will need an Ably API key. If you are not already 
 The server-side scripts connect to Ably using [Basic Authentication](https://www.ably.io/documentation/core-features/authentication#basic-authentication), i.e. by using the API Key directly as shown below:
 
 ```js
-const realtime = Ably.Realtime({
+const realtime = new Ably.Realtime({
   key: ABLY_API_KEY,
   echoMessages: false
 });
@@ -112,7 +112,7 @@ Assuming you’ve seen the working of the app and understand the file structure 
 In this file, after requiring the necessary NPM libraries, we start with instantiating the Ably library.
 
 ```js
-const realtime = Ably.Realtime({
+const realtime = new Ably.Realtime({
   key: ABLY_API_KEY,
   echoMessages: false
 });
@@ -166,7 +166,7 @@ Each quiz room is identified by a unique room code, which is generated on the fr
 So we’ll start by instantiating Ably for the worker thread in exactly the same way as we did before with `server.js`:
 
 ```js
-const realtime = Ably.Realtime({
+const realtime = new Ably.Realtime({
   key: ABLY_API_KEY,
   echoMessages: false
 });
