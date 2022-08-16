@@ -164,33 +164,33 @@ export default {
   },
   methods: {
     subscribeToQuizRoomChEvents() {
-      this.myQuizRoomCh.subscribe('new-player', (msg) => {
+      this.myQuizRoomCh.subscribe('new-player', msg => {
         this.handleNewPlayerEntered(msg);
       });
-      this.myQuizRoomCh.subscribe('start-quiz-timer', (msg) => {
+      this.myQuizRoomCh.subscribe('start-quiz-timer', msg => {
         this.didHostStartGame = true;
         this.timer = msg.data.countDownSec;
       });
-      this.myQuizRoomCh.subscribe('new-question', (msg) => {
+      this.myQuizRoomCh.subscribe('new-question', msg => {
         this.handleNewQuestionReceived(msg);
       });
-      this.myQuizRoomCh.subscribe('question-timer', (msg) => {
+      this.myQuizRoomCh.subscribe('question-timer', msg => {
         this.questionTimer = msg.data.countDownSec;
         if (this.questionTimer < 0) {
           this.questionTimer = 30;
         }
       });
-      this.myQuizRoomCh.subscribe('correct-answer', (msg) => {
+      this.myQuizRoomCh.subscribe('correct-answer', msg => {
         this.handleCorrectAnswerReceived(msg);
       });
       this.myQuizRoomCh.subscribe('quiz-ending', () => {
         this.handleQuizEnding();
       });
-      this.myQuizRoomCh.subscribe('live-stats-update', (msg) => {
+      this.myQuizRoomCh.subscribe('live-stats-update', msg => {
         this.numAnswered = msg.data.numAnswered;
         this.numPlaying = msg.data.numPlaying;
       });
-      this.myQuizRoomCh.subscribe('full-leaderboard', (msg) => {
+      this.myQuizRoomCh.subscribe('full-leaderboard', msg => {
         this.leaderboard = msg.data.leaderboard;
       });
     },
@@ -281,13 +281,17 @@ export default {
     this.quizRoomCode = this.$route.query.quizCode;
     await axios
       .get('/checkRoomStatus?quizCode=' + this.quizRoomCode)
-      .then((roomStatusInfo) => {
+      .then(roomStatusInfo => {
         this.isRoomClosed = roomStatusInfo.data.isRoomClosed;
       });
     this.myQuizRoomCh = this.realtime.channels.get(
       `${this.quizRoomCode}:primary`
     );
-    this.myAvatarColor = '#' + Math.random().toString(16).slice(-6);
+    this.myAvatarColor =
+      '#' +
+      Math.random()
+        .toString(16)
+        .slice(-6);
   },
   beforeDestroy() {
     if (this.myQuizRoomCh) {
@@ -308,17 +312,18 @@ export default {
   margin: 0px auto;
   text-align: center;
   width: 60%;
+  max-width: 900px;
 }
 .nickname-input {
   display: flex;
   justify-content: space-evenly;
-  width: 50%;
+  width: 60%;
   text-align: center;
   margin: 0 auto;
 }
 
 .player-leaderboard {
-  width: 40%;
+  width: 60%;
 }
 
 button {

@@ -109,7 +109,8 @@ export default {
 .host-home {
   margin: 0px auto;
   text-align: center;
-  width: 60%;
+  width: 90%;
+  max-width: 900px;
 }
 
 button {
