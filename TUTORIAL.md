@@ -71,6 +71,9 @@ In order to use this kit, you will need an Ably API key. If you are not already 
 The server-side scripts connect to Ably using [Basic Authentication](https://www.ably.com/documentation/core-features/authentication#basic-authentication), i.e. by using the API Key directly as shown below:
 
 ```js
+const envConfig = require('dotenv').config();
+const { ABLY_API_KEY } = envConfig.parsed;
+
 const realtime = new Ably.Realtime({
   key: ABLY_API_KEY,
   echoMessages: false
@@ -480,13 +483,13 @@ Let’s understand the various components along with the methods in each.
 When the host opens the app, the `<router-vue>` in the `App.vue` file becomes the `HostHome` component.
 
 1. `HostHome.vue`
-   
+
    In this component, we show the host two options to choose the type of quiz, i.e. custom or random. We receive the Ably Realtime instance and the unique client id as props from the `App.vue` component. When one of the options is chosen, we switch to the `CreateQuizRoom.vue` component.
 
 2. `CreateQuizRoom.vue`
-   
+
    **HTML** - We show the instructions to add custom questions in case of that option being chosen. For both types of quizzes, we show an input box for the host to enter their nickname and create a quiz room with the chosen quiz type and questions if applicable.
-   
+
    **JS** - This is the main file in which we attach and subscribe to various Ably channels to receive updates and publish data. Let’s understand the methods in this component:
 - The `createQuizRoom()` method:
 
@@ -767,11 +770,11 @@ beforeDestroy() {
 This is a component lifecycle method which is invoked just before the `CreateQuizRoom.vue` component is destroyed. In this method, we have the host leave the presence set on the quiz room channel and reset the question timer.
 
 3. `AdminPanel.vue`
-   
+
    **HTML** - We show the options to show the next question or end quiz midway through.
-   
+
    **JS** - As per the button clicked, we simply publish an event on the host channel. In case the host chooses the end quiz option, we also emit an event for the `CreateQuizRoom.vue` component to be able to update the view accordingly. In this case, we show the full leaderboard.
-   
+
    ```js
     showNextQuestion() {
       this.hostAdminCh.publish('next-question', {
