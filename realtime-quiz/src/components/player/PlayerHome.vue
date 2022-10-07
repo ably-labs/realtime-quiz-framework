@@ -1,8 +1,13 @@
 <template>
   <div>
     <div v-if="!showQuestions" class="player-home card">
-      <a href="https://www.ably.com/" target="_blank">
-        <img :src="headerImgLink" class="card-img-top" alt="Header image" />
+      <a href="https://www.ably.com/" class="ably-branding" target="_blank">
+        <h2>Live Quiz App</h2>
+        <hr />
+        <div class="ably-power">
+          <strong>powered by</strong>
+          <img :src="headerLogo" alt="Header image" />
+        </div>
       </a>
       <div v-if="!isRoomClosed" class="card-body">
         <h5 class="card-title">Hello {{ myNickname }}!</h5>
@@ -92,9 +97,7 @@
       </div>
     </template>
     <template v-if="showFinalScreen">
-      <div class="quiz-end-player">
-        This quiz has ended
-      </div>
+      <div class="quiz-end-player">This quiz has ended</div>
       <div>
         <Leaderboard
           :isPlayer="true"
@@ -129,8 +132,8 @@ export default {
       isRoomClosed: null,
       quizRoomCode: null,
       myQuizRoomCh: null,
-      headerImgLink:
-        'https://user-images.githubusercontent.com/5900152/108396467-c713bc00-720e-11eb-95d8-a5f9e571b153.png',
+      headerLogo:
+        'https://static.ably.dev/logo-h-white.svg?realtime-quiz-framework',
       myNickname: '',
       myAvatarColor: null,
       didPlayerEnterRoom: false,
@@ -309,17 +312,18 @@ export default {
   margin: 0px auto;
   text-align: center;
   width: 60%;
+  max-width: 900px;
 }
 .nickname-input {
   display: flex;
   justify-content: space-evenly;
-  width: 50%;
+  width: 60%;
   text-align: center;
   margin: 0 auto;
 }
 
 .player-leaderboard {
-  width: 40%;
+  width: 60%;
 }
 
 button {

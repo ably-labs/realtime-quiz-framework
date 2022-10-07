@@ -61,17 +61,20 @@ This information is used by the main server thread to maintain a list of active 
 
 #### Connecting to Ably
 
-In order to use this kit, you will need an Ably API key. If you are not already signed up, you can [sign up now for a free Ably account](https://www.ably.io/signup). Once you have an Ably account:
+In order to use this kit, you will need an Ably API key. If you are not already signed up, you can [sign up now for a free Ably account](https://www.ably.com/signup). Once you have an Ably account:
 
 - Log into your app dashboard
 - Under **Your apps**, click on **Manage app** for any app you wish to use for this tutorial, or create a new one with the **Create New App** button
 - Click on the **API Keys** tab
 - Copy the secret **API Key** value from your Root key.
 
-The server-side scripts connect to Ably using [Basic Authentication](https://www.ably.io/documentation/core-features/authentication#basic-authentication), i.e. by using the API Key directly as shown below:
+The server-side scripts connect to Ably using [Basic Authentication](https://www.ably.com/documentation/core-features/authentication#basic-authentication), i.e. by using the API Key directly as shown below:
 
 ```js
-const realtime = Ably.Realtime({
+const envConfig = require('dotenv').config();
+const { ABLY_API_KEY } = envConfig.parsed;
+
+const realtime = new Ably.Realtime({
   key: ABLY_API_KEY,
   echoMessages: false
 });
@@ -79,7 +82,7 @@ const realtime = Ably.Realtime({
 
 Note: Setting the `echoMessages` false prevents the server from receiving its own messages.
 
-The main server thread uses Express to listen to HTTP requests. It has an `/auth` endpoint that is used by the client-side scripts to authenticate with Ably using tokens. This is a recommended strategy as placing your secret API Key in a front-end script exposes it to potential misuse. The client-side scripts connect to Ably using [Token Authentication](https://www.ably.io/documentation/core-features/authentication#token-authentication) as shown below:
+The main server thread uses Express to listen to HTTP requests. It has an `/auth` endpoint that is used by the client-side scripts to authenticate with Ably using tokens. This is a recommended strategy as placing your secret API Key in a front-end script exposes it to potential misuse. The client-side scripts connect to Ably using [Token Authentication](https://www.ably.com/documentation/core-features/authentication#token-authentication) as shown below:
 
 ```js
 const realtime = new Ably.Realtime({
@@ -112,13 +115,13 @@ Assuming you’ve seen the working of the app and understand the file structure 
 In this file, after requiring the necessary NPM libraries, we start with instantiating the Ably library.
 
 ```js
-const realtime = Ably.Realtime({
+const realtime = new Ably.Realtime({
   key: ABLY_API_KEY,
   echoMessages: false
 });
 ```
 
-Ably.Realtime takes the client options JSON object as an argument and we have the Ably API Key ([Basic auth](https://www.ably.io/documentation/core-features/authentication#basic-authentication)) and `echoMessages` which when set to false prevents the client from receiving their own messages i.e if they are publishing to a channel that they are subscribed to.
+Ably.Realtime takes the client options JSON object as an argument and we have the Ably API Key ([Basic auth](https://www.ably.com/documentation/core-features/authentication#basic-authentication)) and `echoMessages` which when set to false prevents the client from receiving their own messages i.e if they are publishing to a channel that they are subscribed to.
 
 Next, we set up a few routes, and have express handle them using `app.get(‘/route’, callback)`. We have the following routes:
 
@@ -166,7 +169,7 @@ Each quiz room is identified by a unique room code, which is generated on the fr
 So we’ll start by instantiating Ably for the worker thread in exactly the same way as we did before with `server.js`:
 
 ```js
-const realtime = Ably.Realtime({
+const realtime = new Ably.Realtime({
   key: ABLY_API_KEY,
   echoMessages: false
 });
@@ -488,7 +491,6 @@ When the host opens the app, the `<router-vue>` in the `App.vue` file becomes th
    **HTML** - We show the instructions to add custom questions in case of that option being chosen. For both types of quizzes, we show an input box for the host to enter their nickname and create a quiz room with the chosen quiz type and questions if applicable.
 
    **JS** - This is the main file in which we attach and subscribe to various Ably channels to receive updates and publish data. Let’s understand the methods in this component:
-
 - The `createQuizRoom()` method:
 
 ```js
@@ -840,4 +842,4 @@ This component displays the correct answer for the previously displayed question
 
 That's all the code! All the components are extensible and can be used as a starting point to customize the app as per your requirements.
 
-If you have any questions, feel free to [give me a shout on Twitter](https://twitter.com/Srushtika) or [reach out to the support team at Ably](mailto:support@ably.io).
+If you have any questions, feel free to [give me a shout on Twitter](https://twitter.com/Srushtika) or [reach out to the support team at Ably](mailto:support@ably.com).

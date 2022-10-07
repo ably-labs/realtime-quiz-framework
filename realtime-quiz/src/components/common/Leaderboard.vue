@@ -38,9 +38,10 @@ export default {
 }
 
 .leaderboard-player {
-  width: 60%;
+  width: 90%;
   text-align: center;
   margin: 20px auto;
+  max-width: 900px;
 }
 
 .score-list {

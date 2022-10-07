@@ -7,8 +7,10 @@ const serveStatic = require('serve-static');
 const path = require('path');
 
 const app = express();
-const ABLY_API_KEY = process.env.ABLY_API_KEY;
+const { ABLY_API_KEY } = envConfig.parsed;
 const globalQuizChName = 'main-quiz-thread';
+
+console.log(envConfig, ABLY_API_KEY);
 
 let globalQuizChannel;
 const activeQuizRooms = {};
